@@ -1,0 +1,25 @@
+{
+  "name": "functional-javascript",
+  "version": "1.0.0",
+  "description": "A talk given at a local meetup showing basic functional patterns and their use in constructing UIs.",
+  "main": "index.html",
+  "scripts": {
+    "build": "node_modules/.bin/babel-node bin/build.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlecAivazis/functional-javascript.git"
+  },
+  "author": "Alec Aivazis",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AlecAivazis/functional-javascript/issues"
+  },
+  "homepage": "https://github.com/AlecAivazis/functional-javascript#readme",
+  "dependencies": {
+    "babel-cli": "^6.9.0",
+    "babel-preset-es2015-node6": "^0.2.0",
+    "babel-preset-stage-0": "^6.5.0",
+    "pug": "^2.0.0-alpha8"
+  }
+}
