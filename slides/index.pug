@@ -1,2 +1,19 @@
-div
-   | hello
+html
+    head
+        link(rel="stylesheet", href="static/styles/reveal.css")
+        link(rel="stylesheet", href="static/styles/theme/moon.css")
+        link(rel="stylesheet", href="static/styles/custom.css")
+        link(rel="stylesheet", href="static/lib/css/monokai_sublime.css")
+    body
+        .reveal
+            .slides
+                include cover.pug
+                include bio.pug
+                include roadmap.pug
+                include es6.pug
+                include combinators.pug
+                include react.pug
+
+        script(src="static/lib/js/head.min.js")
+        script(src="static/scripts/reveal.js")
+        script(src="static/scripts/init.js")
