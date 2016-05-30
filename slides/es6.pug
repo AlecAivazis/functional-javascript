@@ -1,0 +1,37 @@
+section
+    section
+        h2 Syntax
+    section
+        img(src="static/images/es6.jpg")
+    section
+        h2 Variable declaration
+        pre
+            code.
+                // whatever you want, functionally scoped
+                var asdf = 'asdf'
+                // cannot be re-declared, block scope
+                let foo = 'bar'
+                // cannot be mutated (some times), block scope
+                const bar = 'baz'
+    section
+        h2 Anonymous Functions
+        pre
+            code.javascript(data-noescape).
+                // does this act like a var, let, or const?
+                function oldSchool(name) {
+                    return 'Hello ' + name
+                }
+
+                // now we can decide!
+                const newSchool = (name) => 'Hello ' + name
+
+                // sometimes implicit returns are bad in the imperative world
+                const newSchool2 = (name) => {
+                    // insert some code side-effect ridden code here...
+                    return 'Hello ' + name
+                }
+
+                // much prettier than before
+                window.addEventListener('click', (event) => console.log(event.mouseX))
+
+
