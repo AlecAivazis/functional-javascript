@@ -1,0 +1,12 @@
+.ds_logo {
+    margin: none !important;
+    background: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    height: 30%;
+}
+
+mark {
+    background-color: rgba(0,0,0,0) !important;
+    opacity: .5;
+}
