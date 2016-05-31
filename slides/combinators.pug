@@ -1,2 +1,52 @@
 section
-    | combinators
+    section
+        h2 combinators
+    section
+        h2 map
+    section
+        | In the imperative world...
+        pre
+            code.javascript.
+                // we want to square each number in this list
+                const numbers = [1,2,3]
+
+                // we'll collect the results in this list
+                const result = []
+
+                // visit each element in the array
+                for (const entry of numbers) {
+                    result.append(entry*entry)
+                }
+    section
+        | With our fancy new combinator
+        pre
+            code.javascript.
+                // we want to square each number in this list
+                const numbers = [1,2,3]
+                // square each number in a single line!
+                const result = numbers.map(entry => entry*entry)
+    section
+        h2 reduce
+    section
+        | The imperative way
+        pre
+            code.javascript.
+                // now we want to add each number in the list
+                const numbers = [1,2,3]
+
+                // start off at zero
+                const total = 0
+
+                // visit every item
+                for (const entry of numbers) {
+                    // add the number to the running total
+                    total += entry
+                }
+    section
+        | Using reduce,
+        pre
+            code.javascript.
+                // the numbers to sum up
+                const numbers = [1,2,3]
+                // combine them in a single line
+                const result = numbers.reduce((sum, entry) => sum+entry, 0)
