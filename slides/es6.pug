@@ -33,5 +33,43 @@ section
 
                 // much prettier than before
                 window.addEventListener('click', (event) => console.log(event.mouseX))
+    section
+        h2 destructuring
+        pre
+            code.javascript.
+                // the old way
+                const data = {'foo': 'bar'}
+                // grab the foo entry
+                const foo = data.foo
+        pre
+            code.javascript.
+                const data = {'foo': 'bar'}
+                // grab the foo entry
+                const {foo} = data
+        pre
+            code.javascript.
+                function myFunc({foo}) {
+                    console.log(foo)
+                }
 
+                myFunc({foo: 'bar'})
 
+    section
+        h2 spread
+        pre
+            code.javascript.
+                const mockData = {
+                    foo: 'bar',
+                }
+
+                const newObj = {
+                    'bar': 'baz',
+                    ...mockData,
+                }
+
+                /*
+                    newObj == {
+                        bar: 'baz',
+                        foo: 'bar'
+                    }
+                */
