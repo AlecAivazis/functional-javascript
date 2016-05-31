@@ -1,2 +1,89 @@
 section
-    | react
+    section
+        img(src="static/images/react.png")
+    section
+        | gif: javascript all the things
+    section
+        h2 More syntax!
+    section
+        pre
+            code.jsx.
+                import React from 'react'
+
+                // the hello world of react components
+                const MyElement = () => (
+                    <div>
+                        hello world!
+                    </div>
+                )
+
+                // rendered with &lt;MyElement /&gt;
+    section
+        | gif: you put your html in my javascript!
+    section
+        h3 inline expressions
+        pre
+            code.javascript.
+                import React from 'react'
+
+                const MyElement = ({name}) => (
+                    <div>
+                        Hello {name}!
+                    </div>
+                )
+
+                // rendered with &lt;MyElement name="John" /&gt;
+    section
+        h3 using map in jsx
+        pre
+            code.javascript.
+                import React from 'react'
+
+                const NumberList = (numbers) => (
+                    &lt;ul&gt;
+                        { numbers.map(number => (
+                            &lt;li&gt;
+                                {number}
+                            &lt;/li&gt;
+                        ))}
+                    &lt;/ul&gt;
+                )
+        p.
+            rendered with &lt;MyElement numbers={[1,2,3]} /&gt;
+        span(style="text-align: left;").
+            produces <br/>
+            &lt;ul&gt; <br/>
+              &lt;li&gt;1&lt;/li&gt; <br/>
+              &lt;li&gt;2&lt;/li&gt; <br/>
+              &lt;li&gt;3&lt;/li&gt; <br/>
+            &lt;ul&gt; <br/>
+    section
+        h3 putting it all together
+    section
+        pre
+            code.javascript.
+                import React from 'react'
+
+                const calendarItems = [
+                    {name: 'Give Talk', date: '6/15/2016'},
+                    {name: 'Give Another Talk', date: '6/22/2016'},
+                ]
+
+                const Calendar = ({items}) =&gt; (
+                    &lt;div&gt;
+                        {items.map(item =&gt; (
+                            &lt;CalendarItem {...item}/&gt;
+                        ))}
+                    &lt;/div&gt;
+                )
+
+                const CalendarItem = ({name, date}) => (
+                    &lt;div&gt;
+                        &lt;div&gt; {name} &lt;/div&gt;
+                        &lt;div&gt; {date} &lt;/div&gt;
+                    &lt;/div&gt;
+                )
+
+                // rendered with &lt;Calendar items={calendarItems} /&gt;
+
+
