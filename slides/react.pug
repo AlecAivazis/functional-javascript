@@ -12,9 +12,9 @@ section
 
                 // the hello world of react components
                 const MyElement = () => (
-                    <div>
+                    &lt;div&gt;
                         hello world!
-                    </div>
+                    &lt;/div&gt;
                 )
 
                 // rendered with &lt;MyElement /&gt;
@@ -27,9 +27,9 @@ section
                 import React from 'react'
 
                 const MyElement = ({name}) => (
-                    <div>
+                    &lt;div&gt;
                         Hello {name}!
-                    </div>
+                    &lt;/div&gt;
                 )
 
                 // rendered with &lt;MyElement name="John" /&gt;
@@ -39,9 +39,9 @@ section
             code.javascript.
                 import React from 'react'
 
-                const NumberList = (numbers) => (
+                const NumberList = (numbers) =&gt; (
                     &lt;ul&gt;
-                        { numbers.map(number => (
+                        { numbers.map(number =&gt; (
                             &lt;li&gt;
                                 {number}
                             &lt;/li&gt;
@@ -51,8 +51,8 @@ section
         p.
             rendered with &lt;MyElement numbers={[1,2,3]} /&gt;
         span(style="text-align: left;").
-            produces <br/>
-            &lt;ul&gt; <br/>
+            produces &lt;br/>
+            &lt;ul&gt; &lt;br/>
               &lt;li&gt;1&lt;/li&gt; <br/>
               &lt;li&gt;2&lt;/li&gt; <br/>
               &lt;li&gt;3&lt;/li&gt; <br/>
@@ -62,12 +62,12 @@ section
     section
         pre
             code.javascript.
-                import React from 'react'
-
                 const calendarItems = [
                     {name: 'Give Talk', date: '6/15/2016'},
                     {name: 'Give Another Talk', date: '6/22/2016'},
                 ]
+        pre
+            code.javascript.
 
                 const Calendar = ({items}) =&gt; (
                     &lt;div&gt;
@@ -76,6 +76,8 @@ section
                         ))}
                     &lt;/div&gt;
                 )
+        pre
+            code.javascript.
 
                 const CalendarItem = ({name, date}) => (
                     &lt;div&gt;
@@ -83,7 +85,4 @@ section
                         &lt;div&gt; {date} &lt;/div&gt;
                     &lt;/div&gt;
                 )
-
-                // rendered with &lt;Calendar items={calendarItems} /&gt;
-
 
