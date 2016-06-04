@@ -32,7 +32,6 @@ pre[class*="language-"] {
 pre[class*="language-"] {
     position: relative;
     margin: .5em 0;
-    border-left: 10px solid #358ccb;
     background-color: #fdfdfd;
     background-image: -webkit-linear-gradient(transparent 50%, rgba(69, 142, 209, 0.04) 50%);
     background-image: -moz-linear-gradient(transparent 50%, rgba(69, 142, 209, 0.04) 50%);

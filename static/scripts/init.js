@@ -1,4 +1,5 @@
 Reveal.initialize({
+    width: 1024,
     history: true,
     dependencies: [
         // Syntax highlight for <code> elements
