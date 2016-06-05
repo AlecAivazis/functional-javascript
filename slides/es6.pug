@@ -18,19 +18,28 @@ section
                     // cannot be changed (some times), block scoped
                     const bar = 'baz'
     section
+        h2 Better Variable Declaration
+        pre
+            code.
+                // cannot be re-declared
+                let foo = 'bar'
+                // cannot be changed (some times)
+                const bar = 'baz'
+
+    section
         h2 Anonymous Functions
         div(style="display: flex; flex-direction: row;")
             .row
                 .column
-                    pre
-                        code.javascript(data-noescape).
+                    pre(style="padding-right: 0")
+                        code.javascript.
                             // does this act like a var, let,
                             // or const?
                             function myFunc(name) {
                                 return 'Hello ' + name
                             }
                 .column.fragment(data-fragment-index=1)
-                    pre
+                    pre(style="width: 95%;")
                         code.javascript(data-noescape).
 
                             // now we can decide!
