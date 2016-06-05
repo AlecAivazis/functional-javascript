@@ -30,8 +30,29 @@ mark {
     margin-top: 35px !important;
 }
 
+.illustration {
+    align-items: center;
+    justify-content: center;
+}
+
+.illustration img {
+    background: none !important;
+    border: none !important;
+}
+
 .example i {
     margin: 0 10px;
+}
+
+pre.flat {
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+pre.flat code {
+    padding: 0;
 }
 
 h3 {

@@ -1,14 +1,27 @@
 section
     section
         img.ds_logo(src="static/images/react.svg")
+
     section
-        | gif: javascript all the things
+        .row.illustration
+            img(style="height: 25%;", src="static/images/html-logo.png")
+            i.fa.fa-long-arrow-right(style="color: white; font-size: 94px; margin-left: 45px;")
+                | &nbsp;
+            img(style="height: 45%;" src="static/images/js-logo.png")
+
     section
         h2 More syntax!
+
     section
-        pre
-            code.jsx.
+        pre.flat.fragment.current-visible(data-fragment-index=1)
+            code.
                 import React from 'react'
+        pre.flat.fragment.current-visible(data-fragment-index=1)
+            code.
+                import ReactDom from 'react-dom'
+        pre.flat
+            code.
+
 
                 // the hello world of react components
                 const MyElement = () => (
@@ -16,10 +29,19 @@ section
                         hello world!
                     &lt;/div&gt;
                 )
-
-                // rendered with &lt;MyElement /&gt;
-    section
-        | gif: you put your html in my javascript!
+        span(style="display:flex; margin-top: 32px")
+            pre.flat.fragment.fade-out(data-fragment-index=1)
+                code.
+                    // rendered with &lt;MyElement /&gt;
+        span(style="display:flex; margin-top: -31px")
+            pre.flat.fragment.current-visible(data-fragment-index=1)
+                code.
+                    // render over a specific element
+                    ReactDom.render(&lt;MyElement /&gt, document.getElementById('app'))
+        span(style="display:flex; margin-top: -61px")
+            pre.flat.fragment(data-fragment-index=2)
+                code.
+                    // rendered with &lt;MyElement /&gt;
     section
         h3 inline expressions
         pre
@@ -33,6 +55,9 @@ section
                 )
 
                 // rendered with &lt;MyElement name="John" /&gt;
+
+    section(data-background-image="http://i.giphy.com/10fdsa6b79iBDq.gif")
+
     section
         h3 using map in jsx
         pre
@@ -48,27 +73,21 @@ section
                         ))}
                     &lt;/ul&gt;
                 )
-        p.
-            rendered with &lt;MyElement numbers={[1,2,3]} /&gt;
-        span(style="text-align: left;").
-            produces &lt;br/>
-            &lt;ul&gt; &lt;br/>
-              &lt;li&gt;1&lt;/li&gt; <br/>
-              &lt;li&gt;2&lt;/li&gt; <br/>
-              &lt;li&gt;3&lt;/li&gt; <br/>
-            &lt;ul&gt; <br/>
+
+                // rendered with &lt;MyElement numbers={[1,2,3]} /&gt;
+
     section
         h3 putting it all together
+
     section
-        pre
+        pre.flat(style="margin-bottom: 45px")
             code.javascript.
                 const calendarItems = [
                     {name: 'Give Talk', date: '6/15/2016'},
                     {name: 'Give Another Talk', date: '6/22/2016'},
                 ]
-        pre
+        pre.flat.fragment(data-fragment-index=1)
             code.javascript.
-
                 const Calendar = ({items}) =&gt; (
                     &lt;div&gt;
                         {items.map(item =&gt; (
@@ -76,13 +95,9 @@ section
                         ))}
                     &lt;/div&gt;
                 )
-        pre
-            code.javascript.
-
                 const CalendarItem = ({name, date}) => (
                     &lt;div&gt;
                         &lt;div&gt; {name} &lt;/div&gt;
                         &lt;div&gt; {date} &lt;/div&gt;
                     &lt;/div&gt;
                 )
-

@@ -6,12 +6,12 @@ section
     section(style="display: flex;")
         h2 Variable Declaration
         .row
-            pre(style="margin-top: 0; margin-bottom: 0; padding-top: 0; padding-bottom: 0;")
+            pre.flat
                 code.
                     // hoisted, functionally scoped
                     var asdf = 'asdf'
         .row.fragment(data-fragment-index=1)
-            pre(style="margin-top: 0; margin-bottom: 0; padding-top: 0; padding-bottom: 0;")
+            pre.flat
                 code.
                     // cannot be re-declared, block scoped
                     let foo = 'bar'
