@@ -10,3 +10,16 @@ mark {
     background-color: rgba(0,0,0,0) !important;
     opacity: .5;
 }
+
+.row {
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+}
+
+
+.column {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}

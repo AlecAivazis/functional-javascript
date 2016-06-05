@@ -3,12 +3,16 @@ section
         h2 Syntax
     section
         img(src="static/images/es6.jpg")
-    section
+    section(style="display: flex;")
         h2 Variable Declaration
-        pre
-            code.
-                    // whatever you want, hoisted, functionally scoped
+        .row
+            pre(style="margin-top: 0; margin-bottom: 0; padding-top: 0; padding-bottom: 0;")
+                code.
+                    // hoisted, functionally scoped
                     var asdf = 'asdf'
+        .row.fragment(data-fragment-index=1)
+            pre(style="margin-top: 0; margin-bottom: 0; padding-top: 0; padding-bottom: 0;")
+                code.
                     // cannot be re-declared, block scoped
                     let foo = 'bar'
                     // cannot be changed (some times), block scoped
@@ -16,71 +20,83 @@ section
     section
         h2 Anonymous Functions
         div(style="display: flex; flex-direction: row;")
-            pre
-                code.javascript(data-noescape).
-                    // does this act like a var, let,
-                    // or const?
-                    function myFunc(name) {
-                        return 'Hello ' + name
-                    }
-            pre
-                code.javascript(data-noescape).
+            .row
+                .column
+                    pre
+                        code.javascript(data-noescape).
+                            // does this act like a var, let,
+                            // or const?
+                            function myFunc(name) {
+                                return 'Hello ' + name
+                            }
+                .column.fragment(data-fragment-index=1)
+                    pre
+                        code.javascript(data-noescape).
 
-                    // now we can decide!
-                    const myNewFunc = (name) => (
-                        'Hello ' + name
-                    )
+                            // now we can decide!
+                            const myNewFunc = (name) => (
+                                'Hello ' + name
+                            )
 
-                    // sometimes implicit returns are bad
-                    const myNewestFunc = (name) => {
-                        return 'Hello ' + name
-                    }
+                            // sometimes implicit returns are bad
+                            const myNewestFunc = (name) => {
+                                return 'Hello ' + name
+                            }
     section
         h2 destructuring
-        div(style="display: flex; flex-direction: row;")
-            pre
-                code.javascript.
-                    // the old way
-                    var data = {'foo': 'bar'}
-                    // grab the foo entry
-                    var foo = data.foo
+        .row
+            .column
+                pre
+                    code.javascript.
+                        var data = {'foo': 'bar'}
+                        // grab the foo entry
+                        var foo = data.foo
 
+                pre
+                    code.javascript.
+                        function myFunc(args) {
+                            console.log(args.foo)
+                        }
+                        myFunc({foo: 'bar'})
 
-                    function myFunc(args) {
-                        console.log(args.foo)
-                    }
-                    myFunc({foo: 'bar'})
+            .column.fragment(data-fragment-index=1)
+                pre
+                    code.javascript.
+                        const data = {'foo': 'bar'}
+                        // grab the foo entry
+                        const {foo} = data
 
-            pre
-                code.javascript.
-                    const data = {'foo': 'bar'}
-                    // grab the foo entry
-                    const {foo} = data
-
-
-                    function myFunc({foo}) {
-                        console.log(foo)
-                    }
-                    myFunc({foo: 'bar'})
+                pre
+                    code.javascript.
+                        function myFunc({foo}) {
+                            console.log(foo)
+                        }
+                        myFunc({foo: 'bar'})
 
     section
         h2 spread
-        pre
-            code.javascript.
-                const mockData = {
-                    foo: 'bar',
-                }
-        pre
-            code.javascript.
+        .row
+            .column
+                pre
+                    code.javascript.
+                        var mockData = {
+                            foo: 'bar',
+                        }
 
-                const newObj = {
-                    'bar': 'baz',
-                    ...mockData,
-                }
+                        var newObject = Object.assign({},
+                            mockData,
+                            {
+                                'bar': 'baz'
+                            }
+                        )
+            .column.fragment(data-fragment-index=1)
+                pre
+                    code.javascript.
+                        const mockData = {
+                            foo: 'bar',
+                        }
 
-                /*
-                    newObj == {
-                        bar: 'baz',
-                        foo: 'bar'
-                    }
-                */
+                        const newObj = {
+                            ...mockData,
+                            'bar': 'baz',
+                        }
