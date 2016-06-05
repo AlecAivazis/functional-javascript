@@ -23,3 +23,13 @@ mark {
     flex-direction: column;
     flex-grow: 1;
 }
+
+.example {
+    color: #B7B7B7;
+    letter-spacing: 4.5;
+    margin-top: 35px !important;
+}
+
+.example i {
+    margin: 0 10px;
+}

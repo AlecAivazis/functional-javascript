@@ -3,6 +3,10 @@ section
         h2 combinators
     section
         h2 map
+        p.example.fragment(data-fragment-index=1)
+            | [1,2,3]
+            i.fa.fa-long-arrow-right
+            | [1,4,9]
     section
         | In the imperative world...
         pre
@@ -15,7 +19,7 @@ section
 
                 // visit each element in the array
                 for (const entry of numbers) {
-                    result.append(entry*entry)
+                    result.append(entry * entry)
                 }
     section
         | With our fancy new combinator
@@ -24,9 +28,13 @@ section
                 // we want to square each number in this list
                 const numbers = [1,2,3]
                 // square each number in a single line!
-                const result = numbers.map(entry => entry*entry)
+                const result = numbers.map(entry => entry * entry)
     section
         h2 reduce
+        p.example.fragment(data-fragment-index=1)
+            | [1,2,3]
+            i.fa.fa-long-arrow-right
+            | 6
     section
         | The imperative way
         pre
