@@ -41,6 +41,44 @@ section
                 const numbers = [1,2,3]
                 // square each number in a single line!
                 const result = numbers.map(entry => entry * entry)
+
+    section
+        h3 filter
+        p.example.fragment(data-fragment-index=1)
+            | [1,2,3,4,5,6]
+            i.fa.fa-long-arrow-right
+            | [2,4,6]
+
+    section
+        | Then
+        pre
+            code.javascript.
+                // we want to grab every even number in this list
+                const numbers = [1,2,3,4,5,6]
+
+                // collect results here
+                const results = []
+
+                // go over every number
+                for (const number of numbers) {
+                    // if the number is even
+                    if (number % 2 == 0) {
+                        // add it to the list
+                        results.append(number)
+                    }
+                }
+
+
+    section
+        | Now
+        pre
+            code.javascript.
+                // we want to grab every even number in this list
+                const numbers = [1,2,3,4,5,6]
+
+                // collect results here
+                const results = numbers.filter(entry => entry % 2 == 0)
+
     section
         h3 reduce
         p.example.fragment(data-fragment-index=1)
