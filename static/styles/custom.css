@@ -58,3 +58,9 @@ pre.flat code {
 h3 {
     text-transform: capitalize !important;
 }
+
+.roadmapItem {
+    list-style: none;
+    margin-bottom: 15px;
+    color: #B7B7B7;
+}
