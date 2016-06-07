@@ -1,23 +1,31 @@
 section
     section
         img.ds_logo(src="static/images/react.svg")
-
+        aside.notes
+            | Now that we've covered the functional basics, let's build some UIs.
+            br
+            | Used to be imperative
+            br
+            | Now is functional
     section
         .row.illustration
             img(style="height: 25%;", src="static/images/html-logo.png")
             i.fa.fa-long-arrow-right(style="color: white; font-size: 94px; margin-left: 45px;")
                 | &nbsp;
             img(style="height: 45%;" src="static/images/js-logo.png")
+        aside.notes
+            | React's entire philosophy is based around making javascript the single tool in the
+            | web developer's toolkit.
 
     section
         h3 More syntax!
+        aside.notes
+            | In order to do that, we first have to cover some more syntax
 
     section
-        pre.flat.fragment.current-visible(data-fragment-index=1)
+        pre.flat.fragment.current-visible(data-fragment-index=2)
             code.
                 import React from 'react'
-        pre.flat.fragment.current-visible(data-fragment-index=1)
-            code.
                 import ReactDom from 'react-dom'
         pre.flat
             code.
@@ -30,22 +38,43 @@ section
                     &lt;/div&gt;
                 )
         span(style="display:flex; margin-top: 32px")
-            pre.flat.fragment.fade-out(data-fragment-index=1)
+            pre.flat.fragment.current-visible(data-fragment-index=1)
                 code.
                     // rendered with &lt;MyElement /&gt;
         span(style="display:flex; margin-top: -31px")
-            pre.flat.fragment.current-visible(data-fragment-index=1)
+            pre.flat.fragment.current-visible(data-fragment-index=2)
                 code.
                     // render over a specific element
                     ReactDom.render(&lt;MyElement /&gt, document.getElementById('app'))
         span(style="display:flex; margin-top: -61px")
-            pre.flat.fragment(data-fragment-index=2)
+            pre.flat.fragment(data-fragment-index=3)
                 code.
                     // rendered with &lt;MyElement /&gt;
+        aside.notes
+            ol
+                li
+                    | This is the hello world of react. It's just a function that returns
+                    | a bit of HTML.
+                    br
+                    | You see, rather than beefing up HTML to support the complicated UIs
+                    | Facebook decided they could add an HTML-like syntax inside of javascript.
+                    br
+                    | In react wording, the function is called a "component" and
+                    | the rendered html is known as the component's "children"
+                li
+                    | This allows us to build custom HTML elements that encapsulate and abstract away
+                    | the various parts of our interface.
+                li
+                    | Unforunately, rendering the root of your interface takes a bit of boilerplate code
+                li
+                    | But for the examples today, I'll try to only use a simple reminder of what things look like
+                    br
+                    | bring up uni-directional dataflow. After describing architecture, on "passing data", transition
+
     section
         h3 inline expressions
         pre
-            code.javascript.
+            code.
                 const MyElement = ({name}) => (
                     &lt;div&gt;
                         Hello {name}!
@@ -53,13 +82,34 @@ section
                 )
 
                 // rendered with &lt;MyElement name="John" /&gt;
+        aside.notes
+            | So there's another bit of syntax I should probably talk about now. In order to emebed javascript
+            | inside of the html elements, we have to wrap them in {}.
+            br
+            | Apart from that, passing data to children feels very natural - they're just keys in a dictionary passed to the component
+            br
+            | Notice how destructuring here let's us keep our code clean of repeated argument names
+            br
+            | So when I first saw this, I was pretty amazed
+
 
     section(data-background-image="http://i.giphy.com/10fdsa6b79iBDq.gif")
+        aside.notes
+            | I mean, not only does it make it pretty easy to reason about your interface as pure elements
+            | But because everything is pure, there's no need for extreme unit testing and shooting for
+            | 100% coverage. You only really need to worry about how your data source changes and
+            | the components with complicated display logic.
+            br
+            | However, it gets even cooler when we start mixing in our functional combinators
 
     section
         h3 using map in jsx
-        pre
-            code.javascript.
+        pre.flat
+            code.
+                // &lt;MyElement numbers={[1,2,3]} /&gt;
+        pre.flat
+            code.
+
                 const NumberList = (numbers) =&gt; (
                     &lt;ul&gt;
                         { numbers.map(number =&gt; (
@@ -69,29 +119,45 @@ section
                         ))}
                     &lt;/ul&gt;
                 )
-
-                // rendered with &lt;MyElement numbers={[1,2,3]} /&gt;
+        aside.notes
+            ol
+                li
+                    | Let's consider the example where I want to take a list of numbers and show an html list
+                    | composed of ul and li elements with each entry as the square of the numbers in this list
+                li
+                    | This is easily accomplished using an inline map over the numbers prop. But our functional
+                    | tools don't stop becoming useful after mapping over lists
 
     section
         h3 putting it all together
 
     section
         pre.flat(style="margin-bottom: 45px")
-            code.javascript.
-                const calendarItems = [
-                    {name: 'Give Talk', date: '6/15/2016'},
-                    {name: 'Give Another Talk', date: '6/22/2016'},
+            code.
+                const listData = [
+                    {name: 'Steak', price: 25.75},
+                    {name: 'Asparagus', price: 45},
                 ]
-        pre.flat.fragment(data-fragment-index=1)
-            code.javascript.
-                const Calendar = ({items}) =&gt; (
-                    &lt;div&gt;
-                        {items.map(item =&gt; (
-                            &lt;CalendarItem {...item}/&gt;
-                        ))}
-                    &lt;/div&gt;
-                )
-                const CalendarItem = ({name, date}) => (
+    section
+        pre(style="font-size: 18px")
+            code.
+                const ShoppingList = ({items}) =&gt; {
+                    // figure out the total cost of all the recipes
+                    const totalCost = items.reduce((sum, {price}) => sum+price, 0)
+
+                    // render the component
+                    return (
+                        &lt;div&gt;
+                            {items.map(recipe =&gt; (
+                                &lt;ShoppingItem {...recipe}/&gt;
+                            ))}
+                            &lt;div&gt;
+                                Total cost: {totalCost}
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                    )
+                }
+                const ShoppingItem = ({name, date}) => (
                     &lt;div&gt;
                         &lt;div&gt; {name} &lt;/div&gt;
                         &lt;div&gt; {date} &lt;/div&gt;

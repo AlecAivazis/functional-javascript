@@ -85,20 +85,21 @@ section
     section
         h3 spread
         .row
-            .column
-                pre
+            .column(style="padding-top: 50px;")
+                pre.flat
                     code.javascript.
                         var mockData = {
                             foo: 'bar',
                         }
-
+                pre.flat.fragment(data-fragment-index=1)
+                    code.
                         var newObject = Object.assign({},
                             mockData,
                             {
                                 'bar': 'baz'
                             }
                         )
-            .column.fragment(data-fragment-index=1)
+            .column.fragment(data-fragment-index=2)
                 pre
                     code.javascript.
                         const mockData = {
