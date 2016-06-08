@@ -107,7 +107,8 @@ section
         pre.flat
             code.
                 // &lt;MyElement numbers={[1,2,3]} /&gt;
-        pre.flat
+        br
+        pre.flat.fragment.current-visible(data-fragment-index=1)
             code.
 
                 const NumberList = (numbers) =&gt; (
@@ -132,24 +133,20 @@ section
         h3 putting it all together
 
     section
-        pre.flat(style="margin-bottom: 45px")
-            code.
-                const listData = [
-                    {name: 'Steak', price: 25.75},
-                    {name: 'Asparagus', price: 45},
-                ]
-    section
-        pre(style="font-size: 18px")
-            code.
-                const ShoppingList = ({items}) =&gt; {
+        pre.flat(style="max-height: none; font-size: 20px; margin-bottom: 10px;")
+            code(style="max-height: none").
+                const itemsInCart = [{name: 'Steak', price: 25.75}, ...]
+        pre.flat(style="max-height: none; font-size: 20px; margin-bottom: 10px;").fragment(data-fragment-index=1)
+            code(style="max-height: none").
+                // the root shopping cart component
+                const ShoppingCart = ({items}) =&gt; {
                     // figure out the total cost of all the recipes
-                    const totalCost = items.reduce((sum, {price}) => sum+price, 0)
-
+                    const totalCost = items.reduce((sum, {price}) => sum + price, 0)
                     // render the component
                     return (
                         &lt;div&gt;
-                            {items.map(recipe =&gt; (
-                                &lt;ShoppingItem {...recipe}/&gt;
+                            {items.map(cartItem =&gt; (
+                                &lt;ShoppingCartItem {...cartItem}/&gt;
                             ))}
                             &lt;div&gt;
                                 Total cost: {totalCost}
@@ -157,7 +154,35 @@ section
                         &lt;/div&gt;
                     )
                 }
-                const ShoppingItem = ({name, date}) => (
+
+                // rendered with &lt;ShoppingCart items={itemsInCart} /&gt;
+
+    section
+        pre(style="max-height: none; font-size: 20px; margin-bottom: 10px;")
+            code.
+                const itemsInCart = [{name: 'Steak', price: 25.75}, ...]
+
+                // ...
+                const totalCost = items.reduce((sum, {price}) => sum + price, 0)
+
+                // ...
+                &lt;div&gt;
+                    {totalCost}
+                &lt;/div&gt;
+
+    section
+        pre(style="max-height: none; font-size: 20px; margin-bottom: 10px;")
+            code.
+                const itemsInCart = [{name: 'Steak', price: 25.75}, ...]
+
+                // ...
+                {items.map(cartItem =&gt; (
+                    &lt;ShoppingCartItem {...cartItem}/&gt;
+                ))}
+        pre.flat.fragment(data-fragment-index=1)
+            code.
+                // ...
+                const ShoppingCartItem = ({name, date}) => (
                     &lt;div&gt;
                         &lt;div&gt; {name} &lt;/div&gt;
                         &lt;div&gt; {date} &lt;/div&gt;
