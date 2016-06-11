@@ -1,12 +1,12 @@
-<html><head><link rel="stylesheet" href="static/styles/reveal.css"/><link rel="stylesheet" href="static/lib/plugin/prism/prism.css"/><link rel="stylesheet" href="static/lib/plugin/prism/theme.css"/><link rel="stylesheet" href="static/styles/theme/black.css"/><link rel="stylesheet" href="static/styles/font-awesome.min.css"/><link rel="stylesheet" href="static/styles/custom.css"/></head><body><div class="reveal"><div class="slides"><section><h2>Functional JavaScript</h2><h3>Building Modern User Interfaces</h3><p>Alec Aivazis</p></section><section><h2>Alec Aivazis</h2><img class="ds_logo" src="static/images/ds_logo.svg"/><br/><a href="http://alec.aivazis.com">alec.aivazis.com</a><br/><a href="http://github.com/AlecAivazis">github.com/AlecAivazis</a></section><section><h2 style="margin-bottom: 20px"> roadmap</h2><ul><li class="fragment roadmapItem">Basic es6 syntax</li><li class="fragment roadmapItem">Functional JavaScript</li><li class="fragment roadmapItem">Quick intro to functional React</li></ul></section><section><section><h2>Syntax</h2></section><section><img src="static/images/es6.jpg"/></section><section style="display: flex"><h3>Variable Declaration</h3><div class="row"><pre class="flat"><code>// hoisted, functionally scoped
+<html><head><link rel="stylesheet" href="static/styles/reveal.css"/><link rel="stylesheet" href="static/lib/plugin/prism/prism.css"/><link rel="stylesheet" href="static/lib/plugin/prism/theme.css"/><link rel="stylesheet" href="static/styles/theme/black.css"/><link rel="stylesheet" href="static/styles/font-awesome.min.css"/><link rel="stylesheet" href="static/styles/custom.css"/></head><body><div class="reveal"><div class="slides"><section><h2>Functional JavaScript</h2><h3>Building Modern User Interfaces</h3><br/><br/><a href="http://alecaivazis.github.io/functional-javascript/#/">alecaivazis.github.io/functional-javascript</a></section><section><h2>Alec Aivazis</h2><img class="ds_logo" src="static/images/ds_logo.svg"/><br/><a href="http://alec.aivazis.com">alec.aivazis.com</a><br/><a href="http://github.com/AlecAivazis">github.com/AlecAivazis</a></section><section><h2 style="margin-bottom: 20px"> roadmap</h2><ul><li class="fragment roadmapItem">Basic modern javascript (es6) syntax</li><li class="fragment roadmapItem">Functional JavaScript</li><li class="fragment roadmapItem">Quick intro to functional React</li></ul></section><section><section><h2>Syntax</h2></section><section><img src="static/images/es6.jpg"/></section><section style="display: flex"><h3>Variable Declaration</h3><div class="row"><pre class="flat"><code>// hoisted, functionally scoped
 var asdf = 'asdf'</code></pre></div><div class="row fragment" data-fragment-index="1"><pre class="flat"><code>// cannot be re-declared, block scoped
 let foo = 'bar'
-// cannot be changed (some times), block scoped
-const bar = 'baz'</code></pre></div></section><section><h3>Better Variable Declaration</h3><pre><code>// cannot be re-declared
+// cannot be changed (sometimes), block scoped
+const bar = 'baz'</code></pre></div></section><section><h3>Better Mental Model</h3><pre><code>// cannot be re-declared
 let foo = 'bar'
-// cannot be changed (some times)
+// cannot be changed (sometimes)
 const bar = 'baz'
-</code></pre></section><section><h3>Functions</h3><div style="display: flex; flex-direction: row"><div class="row"><div class="column"><pre style="padding-right: 0"><code class="javascript">// does this act like a var, let,
+</code></pre></section><section><h3>Functions</h3><div><div class="row"><div class="column"><pre style="padding-right: 0"><code class="javascript">// does this act like a var, let,
 // or const?
 function myFunc(name) {
     return 'Hello ' + name
@@ -32,16 +32,14 @@ const {foo} = data
     console.log(foo)
 }
 myFunc({foo: 'bar'})
-</code></pre></div></div></section><section><h3>spread</h3><div class="row"><div class="column"><pre><code class="javascript">var mockData = {
+</code></pre></div></div></section><section><h3>spread</h3><div class="row"><div class="column" style="padding-top: 50px"><pre class="flat"><code class="javascript">var mockData = {
     foo: 'bar',
-}
-
-var newObject = Object.assign({},
+}</code></pre><pre class="flat fragment" data-fragment-index="1"><code>var newObject = Object.assign({},
     mockData,
     {
         'bar': 'baz'
     }
-)</code></pre></div><div class="column fragment" data-fragment-index="1"><pre><code class="javascript">const mockData = {
+)</code></pre></div><div class="column fragment" data-fragment-index="2"><pre><code class="javascript">const mockData = {
     foo: 'bar',
 }
 
@@ -55,45 +53,109 @@ console.log(myFunction)
 const numbers = [1,2,3]
 
 // we'll collect the results in this list
-const result = []
+const results = []
 
 // visit each element in the array
-for (const entry of numbers) {
+for (const i = 0 ; i < numbers.length ; i ++) {
     result.append(entry * entry)
-}</code></pre></section><section>With our fancy new combinator<pre><code class="javascript">// we want to square each number in this list
+}
+
+// results == [1, 4, 9]</code></pre></section><section>With our fancy new combinator<pre><code class="javascript">// we want to square each number in this list
 const numbers = [1,2,3]
 // square each number in a single line!
-const result = numbers.map(entry => entry * entry)</code></pre></section><section><h3>reduce</h3><p class="example fragment" data-fragment-index="1">[1,2,3]<i class="fa fa-long-arrow-right"></i>6</p></section><section>The imperative way<pre><code class="javascript">// now we want to add each number in the list
+const results = numbers.map(entry => entry * entry)
+
+// results == [1, 4, 9]
+</code></pre></section><section><h3>filter</h3><p class="example fragment" data-fragment-index="1">[1,2,3,4]<i class="fa fa-long-arrow-right"></i>[2,4]</p></section><section>Then<pre><code class="javascript">// we want to grab every even number in this list
+const numbers = [1,2,3,4,5,6]
+// collect results here
+const results = []
+
+// go over every number
+for (const i = 0 ; i < numbers.length ; i ++) {
+    // if the number is even
+    if (number % 2 == 0) {
+        // add it to the list
+        results.append(number)
+    }
+}
+
+// results == [2, 4, 6]
+
+</code></pre></section><section>Now<pre><code class="javascript">// we want to grab every even number in this list
+const numbers = [1,2,3,4,5,6]
+
+// collect results here
+const results = numbers.filter(entry => entry % 2 == 0)
+
+// results == [2, 4, 6]
+</code></pre></section><section><h3>reduce</h3><p class="example fragment" data-fragment-index="1">[1,2,3]<i class="fa fa-long-arrow-right"></i>6</p></section><section>The imperative way<pre><code class="javascript">// now we want to add each number in the list
 const numbers = [1,2,3]
 
 // start off at zero
 const total = 0
 
 // visit every item
-for (const entry of numbers) {
+for (const i = 0 ; i < numbers.length ; i ++) {
     // add the number to the running total
     total += entry
-}</code></pre></section><section>Using reduce,<pre><code class="javascript">// the numbers to sum up
+}
+
+// total == 6</code></pre></section><section>Using reduce,<pre><code class="javascript">// the numbers to sum up
 const numbers = [1,2,3]
+
 // combine them in a single line
-const result = numbers.reduce((sum, entry) => sum + entry, 0)</code></pre></section></section><section><section><img class="ds_logo" src="static/images/react.svg"/></section><section><div class="row illustration"><img style="height: 25%" src="static/images/html-logo.png"/><i class="fa fa-long-arrow-right" style="color: white; font-size: 94px; margin-left: 45px">&nbsp;</i><img style="height: 45%" src="static/images/js-logo.png"/></div></section><section><h3>More syntax!</h3></section><section><pre class="flat fragment current-visible" data-fragment-index="1"><code>import React from 'react'</code></pre><pre class="flat fragment current-visible" data-fragment-index="1"><code>import ReactDom from 'react-dom'</code></pre><pre class="flat"><code>// the hello world of react components
-const MyElement = () => (
+const total = numbers.reduce((sum, entry) => sum + entry, 0)
+
+// total == 6</code></pre></section></section><section><section><span style="display: flex; align-items: center; justify-content: center; font-size: 80px"><img class="ds_logo" src="static/images/react.svg" style="margin-right: 25px"/>React</span><aside class="notes">Now that we've covered the functional basics, let's build some UIs.<br/>Used to be imperative<br/>Now is functional</aside></section><section><div class="row illustration"><img style="height: 25%" src="static/images/html-logo.png"/><i class="fa fa-long-arrow-right" style="color: white; font-size: 94px; margin-left: 45px">&nbsp;</i><img style="height: 45%" src="static/images/js-logo.png"/></div><aside class="notes">React's entire philosophy is based around making javascript the single tool in the
+web developer's toolkit.</aside></section><section><div class="row"><div class="column"><pre class="flat" style="max-height: none; font-size: 20px; margin-bottom: 10px"><code style="max-height: none">&lt;div&gt;
+    &lt;div class="navigation"&gt;
+        &lt;ul&gt;
+            &lt;li&gt; nav1 &lt;/li&gt;
+            &lt;li&gt; nav2 &lt;/li&gt;
+            &lt;li&gt; nav3 &lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/div&gt;
+    &lt;div class="content"&gt;
+    &lt;/div&gt;
+    &lt;div class="footer"&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script src="app.js"&gt;
+</code></pre></div><div class="column fragment current-visible" data-fragment-index="1" style="justify-content: center"><pre class="flat" style="display: flex; max-height: none; font-size: 20px; margin-bottom: 10px"><code style="max-height: none">&lt;div&gt;
+    &lt;Navigation&gt;
+    &lt;Content&gt;
+    &lt;Footer&gt;
+&lt;/div&gt;
+</code></pre></div></div></section><section><h3>More syntax!</h3><aside class="notes">In order to do that, we first have to cover some more syntax</aside></section><section><pre class="flat fragment current-visible" data-fragment-index="2"><code>import React from 'react'
+import ReactDom from 'react-dom'</code></pre><pre class="flat"><code>const MyElement = () => (
     &lt;div&gt;
         hello world!
     &lt;/div&gt;
-)</code></pre><span style="display:flex; margin-top: 32px"><pre class="flat fragment fade-out" data-fragment-index="1"><code>// rendered with &lt;MyElement /&gt;</code></pre></span><span style="display:flex; margin-top: -31px"><pre class="flat fragment current-visible" data-fragment-index="1"><code>// render over a specific element
-ReactDom.render(&lt;MyElement /&gt, document.getElementById('app'))</code></pre></span><span style="display:flex; margin-top: -61px"><pre class="flat fragment" data-fragment-index="2"><code>// rendered with &lt;MyElement /&gt;</code></pre></span></section><section><h3>inline expressions</h3><pre><code class="javascript">import React from 'react'
+)</code></pre><span style="display:flex; margin-top: 32px"><pre class="flat fragment current-visible" data-fragment-index="1"><code>// rendered with &lt;MyElement /&gt;</code></pre></span><span style="display:flex; margin-top: -31px"><pre class="flat fragment current-visible" data-fragment-index="2"><code>// render over a specific element
+ReactDom.render(&lt;MyElement /&gt, document.getElementById('app'))</code></pre></span><span style="display:flex; margin-top: -61px"><pre class="flat fragment" data-fragment-index="3"><code>// rendered with &lt;MyElement /&gt;</code></pre></span><aside class="notes"><ol><li>mention jsx as an extension of javascript adding syntactic sugar</li><li>this makes rendering our custom elements feel very natural alongside the standard html one</li><li>in order to actually render our component tree, we have to do so over a single element</li></ol></aside></section><section><h3>inline expressions</h3><pre><code>const name = "John"
 
-const MyElement = ({name}) => (
+const MyElement = () => (
     &lt;div&gt;
         Hello {name}!
     &lt;/div&gt;
 )
 
-// rendered with &lt;MyElement name="John" /&gt;
-</code></pre></section><section data-background-image="http://i.giphy.com/10fdsa6b79iBDq.gif"></section><section><h3>using map in jsx</h3><pre><code class="javascript">import React from 'react'
+// rendered with &lt;MyElement /&gt;</code></pre><aside class="notes">in order for the compiler to know that an expression should be evaluated as javascript,
+you have to wrap it in curly braces.</aside></section><section><h3>passing data</h3><pre><code>const MyElement = ({name}) => (
+    &lt;div&gt;
+        Hello {name}!
+    &lt;/div&gt;
+)
 
-const NumberList = (numbers) =&gt; (
+// rendered with &lt;MyElement name="John"/&gt;
+
+
+</code></pre></section><section data-background-image="http://i.giphy.com/10fdsa6b79iBDq.gif"><aside class="notes">I mean, not only does it make it pretty easy to reason about your interface as pure elements
+But because everything is pure, there's no need for extreme unit testing and shooting for
+100% coverage. You only really need to worry about how your data source changes and
+the components with complicated display logic.<br/>However, it gets even cooler when we start mixing in our functional combinators</aside></section><section><h3>using map in jsx</h3><pre class="flat"><code>// &lt;MyElement numbers={[1,2,3]} /&gt;</code></pre><br/><pre class="flat fragment current-visible" data-fragment-index="1"><code>const NumberList = (numbers) =&gt; (
     &lt;ul&gt;
         { numbers.map(number =&gt; (
             &lt;li&gt;
@@ -101,20 +163,42 @@ const NumberList = (numbers) =&gt; (
             &lt;/li&gt;
         ))}
     &lt;/ul&gt;
-)
+)</code></pre><aside class="notes"><ol><li>Let's consider the example where I want to take a list of numbers and show an html list
+composed of ul and li elements with each entry as the square of the numbers in this list</li><li>This is easily accomplished using an inline map over the numbers prop. But our functional
+tools don't stop becoming useful after mapping over lists</li></ol></aside></section><section><h3>putting it all together</h3></section><section><pre class="flat" style="max-height: none; font-size: 20px; margin-bottom: 10px"><code style="max-height: none">const itemsInCart = [{name: 'Steak', price: 25.75}, ...]</code></pre><pre class="flat fragment" style="max-height: none; font-size: 20px; margin-bottom: 10px" data-fragment-index="1"><code style="max-height: none">// the root shopping cart component
+const ShoppingCart = (items) =&gt; {
+    // figure out the total cost of all the recipes
+    const totalCost = items.reduce((sum, {price}) => sum + price, 0)
+    // render the component
+    return (
+        &lt;div&gt;
+            {items.map(cartItem =&gt; (
+                &lt;ShoppingCartItem {...cartItem}/&gt;
+            ))}
+            &lt;div&gt;
+                Total cost: {totalCost}
+            &lt;/div&gt;
+        &lt;/div&gt;
+    )
+}
 
-// rendered with &lt;MyElement numbers={[1,2,3]} /&gt;
-</code></pre></section><section><h3>putting it all together</h3></section><section><pre class="flat" style="margin-bottom: 45px"><code class="javascript">const calendarItems = [
-    {name: 'Give Talk', date: '6/15/2016'},
-    {name: 'Give Another Talk', date: '6/22/2016'},
-]</code></pre><pre class="flat fragment" data-fragment-index="1"><code class="javascript">const Calendar = ({items}) =&gt; (
-    &lt;div&gt;
-        {items.map(item =&gt; (
-            &lt;CalendarItem {...item}/&gt;
-        ))}
-    &lt;/div&gt;
-)
-const CalendarItem = ({name, date}) => (
+// rendered with &lt;ShoppingCart items={itemsInCart} /&gt;
+</code></pre></section><section><pre style="max-height: none; font-size: 20px; margin-bottom: 10px"><code>const itemsInCart = [{name: 'Steak', price: 25.75}, ...]
+
+// ...
+const totalCost = items.reduce((sum, {price}) => sum + price, 0)
+
+// ...
+&lt;div&gt;
+    {totalCost}
+&lt;/div&gt;
+</code></pre></section><section><pre style="max-height: none; font-size: 20px; margin-bottom: 10px"><code>const itemsInCart = [{name: 'Steak', price: 25.75}, ...]
+
+// ...
+{items.map(cartItem =&gt; (
+    &lt;ShoppingCartItem {...cartItem}/&gt;
+))}</code></pre><pre class="flat fragment" data-fragment-index="1"><code>// ...
+const ShoppingCartItem = ({name, date}) => (
     &lt;div&gt;
         &lt;div&gt; {name} &lt;/div&gt;
         &lt;div&gt; {date} &lt;/div&gt;
