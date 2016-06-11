@@ -57,23 +57,23 @@ section
             .column
                 pre
                     code.javascript.
-                        var data = {'foo': 'bar'}
-                        // grab the foo entry
-                        var foo = data.foo
+                        var data = {'key': 'bar'}
+                        // grab the key entry
+                        var key = data.key
 
-                pre
+                pre.fragment(data-fragment-index=1)
                     code.javascript.
                         function myFunc(args) {
                             console.log(args.foo)
                         }
                         myFunc({foo: 'bar'})
 
-            .column.fragment(data-fragment-index=1)
+            .column.fragment(data-fragment-index=2)
                 pre
                     code.javascript.
-                        const data = {'foo': 'bar'}
-                        // grab the foo entry
-                        const {foo} = data
+                        const data = {'key': 'bar'}
+                        // grab the key entry
+                        const {key} = data
 
                 pre
                     code.javascript.

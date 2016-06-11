@@ -1,5 +1,29 @@
 section
     section
+        h2 building web interfaces
+
+    section
+        h2 jQuery
+        .row
+            .column
+                pre
+                    code.
+                        &lt;div&gt;
+                            &lt;button id="button"&gt;
+                                hello
+                            &lt;/button&gt;
+                        &lt;/div&gt;
+            .column
+                pre
+                    code.
+                        const button = $("#button")
+
+                        $("#button").on('click', (event) => {
+                            button.style('color', 'red')
+                        })
+
+
+    section
         span(style="display: flex; align-items: center; justify-content: center; font-size: 80px")
             img.ds_logo(src="static/images/react.svg", style="margin-right: 25px;")
             | React
