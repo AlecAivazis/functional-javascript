@@ -27,12 +27,14 @@ section
                 const numbers = [1,2,3]
 
                 // we'll collect the results in this list
-                const result = []
+                const results = []
 
                 // visit each element in the array
-                for (const entry of numbers) {
+                for (const i = 0 ; i < numbers.length ; i ++) {
                     result.append(entry * entry)
                 }
+
+                // results == [1, 4, 9]
     section
         | With our fancy new combinator
         pre
@@ -40,7 +42,9 @@ section
                 // we want to square each number in this list
                 const numbers = [1,2,3]
                 // square each number in a single line!
-                const result = numbers.map(entry => entry * entry)
+                const results = numbers.map(entry => entry * entry)
+
+                // results == [1, 4, 9]
 
     section
         h3 filter
@@ -55,18 +59,19 @@ section
             code.javascript.
                 // we want to grab every even number in this list
                 const numbers = [1,2,3,4,5,6]
-
                 // collect results here
                 const results = []
 
                 // go over every number
-                for (const number of numbers) {
+                for (const i = 0 ; i < numbers.length ; i ++) {
                     // if the number is even
                     if (number % 2 == 0) {
                         // add it to the list
                         results.append(number)
                     }
                 }
+
+                // results == [2, 4, 6]
 
 
     section
@@ -78,6 +83,8 @@ section
 
                 // collect results here
                 const results = numbers.filter(entry => entry % 2 == 0)
+
+                // results == [2, 4, 6]
 
     section
         h3 reduce
@@ -96,15 +103,20 @@ section
                 const total = 0
 
                 // visit every item
-                for (const entry of numbers) {
+                for (const i = 0 ; i < numbers.length ; i ++) {
                     // add the number to the running total
                     total += entry
                 }
+
+                // total == 6
     section
         | Using reduce,
         pre
             code.javascript.
                 // the numbers to sum up
                 const numbers = [1,2,3]
+
                 // combine them in a single line
-                const result = numbers.reduce((sum, entry) => sum + entry, 0)
+                const total = numbers.reduce((sum, entry) => sum + entry, 0)
+
+                // total == 6

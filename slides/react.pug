@@ -1,6 +1,8 @@
 section
     section
-        img.ds_logo(src="static/images/react.svg")
+        span(style="display: flex; align-items: center; justify-content: center; font-size: 80px")
+            img.ds_logo(src="static/images/react.svg", style="margin-right: 25px;")
+            | React
         aside.notes
             | Now that we've covered the functional basics, let's build some UIs.
             br
@@ -18,6 +20,36 @@ section
             | web developer's toolkit.
 
     section
+        .row
+            .column
+                pre.flat(style="max-height: none; font-size: 20px; margin-bottom: 10px;")
+                    code(style="max-height: none").
+                        &lt;div&gt;
+                            &lt;div class="navigation"&gt;
+                                &lt;ul&gt;
+                                    &lt;li&gt; nav1 &lt;/li&gt;
+                                    &lt;li&gt; nav2 &lt;/li&gt;
+                                    &lt;li&gt; nav3 &lt;/li&gt;
+                                &lt;/ul&gt;
+                            &lt;/div&gt;
+                            &lt;div class="content"&gt;
+                            &lt;/div&gt;
+                            &lt;div class="footer"&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+
+                        &lt;script src="app.js"&gt;
+
+            .column.fragment.current-visible(data-fragment-index=1, style="justify-content: center;")
+                pre.flat(style="display: flex; max-height: none; font-size: 20px; margin-bottom: 10px;")
+                    code(style="max-height: none").
+                        &lt;div&gt;
+                            &lt;Navigation&gt;
+                            &lt;Content&gt;
+                            &lt;Footer&gt;
+                        &lt;/div&gt;
+
+    section
         h3 More syntax!
         aside.notes
             | In order to do that, we first have to cover some more syntax
@@ -31,7 +63,6 @@ section
             code.
 
 
-                // the hello world of react components
                 const MyElement = () => (
                     &lt;div&gt;
                         hello world!
@@ -52,45 +83,41 @@ section
                     // rendered with &lt;MyElement /&gt;
         aside.notes
             ol
-                li
-                    | This is the hello world of react. It's just a function that returns
-                    | a bit of HTML.
-                    br
-                    | You see, rather than beefing up HTML to support the complicated UIs
-                    | Facebook decided they could add an HTML-like syntax inside of javascript.
-                    br
-                    | In react wording, the function is called a "component" and
-                    | the rendered html is known as the component's "children"
-                li
-                    | This allows us to build custom HTML elements that encapsulate and abstract away
-                    | the various parts of our interface.
-                li
-                    | Unforunately, rendering the root of your interface takes a bit of boilerplate code
-                li
-                    | But for the examples today, I'll try to only use a simple reminder of what things look like
-                    br
-                    | bring up uni-directional dataflow. After describing architecture, on "passing data", transition
+                li mention jsx as an extension of javascript adding syntactic sugar
+                li this makes rendering our custom elements feel very natural alongside the standard html one
+                li in order to actually render our component tree, we have to do so over a single element
 
     section
         h3 inline expressions
         pre
             code.
+                const name = "John"
+
+                const MyElement = () => (
+                    &lt;div&gt;
+                        Hello {name}!
+                    &lt;/div&gt;
+                )
+
+                // rendered with &lt;MyElement /&gt;
+        aside.notes
+            | in order for the compiler to know that an expression should be evaluated as javascript,
+            | you have to wrap it in curly braces.
+
+
+    section
+        h3 passing data
+        pre
+            code.
+
                 const MyElement = ({name}) => (
                     &lt;div&gt;
                         Hello {name}!
                     &lt;/div&gt;
                 )
 
-                // rendered with &lt;MyElement name="John" /&gt;
-        aside.notes
-            | So there's another bit of syntax I should probably talk about now. In order to emebed javascript
-            | inside of the html elements, we have to wrap them in {}.
-            br
-            | Apart from that, passing data to children feels very natural - they're just keys in a dictionary passed to the component
-            br
-            | Notice how destructuring here let's us keep our code clean of repeated argument names
-            br
-            | So when I first saw this, I was pretty amazed
+                // rendered with &lt;MyElement name="John"/&gt;
+
 
 
     section(data-background-image="http://i.giphy.com/10fdsa6b79iBDq.gif")
@@ -139,7 +166,7 @@ section
         pre.flat(style="max-height: none; font-size: 20px; margin-bottom: 10px;").fragment(data-fragment-index=1)
             code(style="max-height: none").
                 // the root shopping cart component
-                const ShoppingCart = ({items}) =&gt; {
+                const ShoppingCart = (items) =&gt; {
                     // figure out the total cost of all the recipes
                     const totalCost = items.reduce((sum, {price}) => sum + price, 0)
                     // render the component
