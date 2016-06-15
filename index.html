@@ -49,7 +49,7 @@ const newObj = {
 }</code></pre></div></div></section></section><section><section><h2>Functional Programming</h2><h2>in</h2><h2>JavaScript</h2></section><section><h3>The Function Object</h3><pre><code class="javascript">const myFunction = () => 'hello world'
 
 console.log(myFunction)
-</code></pre></section><section><h3>combinators</h3></section><section><h3>map</h3><p class="example fragment" data-fragment-index="1">[1,2,3]<i class="fa fa-long-arrow-right"></i>[1,4,9]</p></section><section>In the imperative world...<pre><code class="javascript">// we want to square each number in this list
+</code></pre></section><section><h3>combinators</h3></section><section><h3>map</h3><p class="example fragment" data-fragment-index="1">[1,2,3]<i class="fa fa-long-arrow-right"></i>[1,4,9]</p></section><section>In the imperative world...<pre style="max-height: none; font-size: 20px; margin-bottom: 10px"><code style="max-height: none">// we want to square each number in this list
 const numbers = [1,2,3]
 
 // we'll collect the results in this list
@@ -57,6 +57,9 @@ const results = []
 
 // visit each element in the array
 for (const i = 0 ; i < numbers.length ; i ++) {
+    // grab the i'th entry
+    const entry = numbers[i]
+    // add the square to the list
     result.append(entry * entry)
 }
 
@@ -66,13 +69,15 @@ const numbers = [1,2,3]
 const results = numbers.map(entry => entry * entry)
 
 // results == [1, 4, 9]
-</code></pre></section><section><h3>filter</h3><p class="example fragment" data-fragment-index="1">[1,2,3,4]<i class="fa fa-long-arrow-right"></i>[2,4]</p></section><section>Then<pre><code class="javascript">// we want to grab every even number in this list
+</code></pre></section><section><h3>filter</h3><p class="example fragment" data-fragment-index="1">[1,2,3,4]<i class="fa fa-long-arrow-right"></i>[2,4]</p></section><section>Then<pre style="max-height: none; font-size: 20px; margin-bottom: 10px"><code style="max-height: none">// we want to grab every even number in this list
 const numbers = [1,2,3,4,5,6]
 // collect results here
 const results = []
 
 // go over every number
 for (const i = 0 ; i < numbers.length ; i ++) {
+    // grab the i'th number
+    const number = numbers[i]
     // if the number is even
     if (number % 2 == 0) {
         // add it to the list
@@ -89,7 +94,7 @@ const numbers = [1,2,3,4,5,6]
 const results = numbers.filter(entry => entry % 2 == 0)
 
 // results == [2, 4, 6]
-</code></pre></section><section><h3>reduce</h3><p class="example fragment" data-fragment-index="1">[1,2,3]<i class="fa fa-long-arrow-right"></i>6</p></section><section>The imperative way<pre><code class="javascript">// now we want to add each number in the list
+</code></pre></section><section><h3>reduce</h3><p class="example fragment" data-fragment-index="1">[1,2,3]<i class="fa fa-long-arrow-right"></i>6</p></section><section>The imperative way<pre style="max-height: none; font-size: 20px; margin-bottom: 10px"><code style="max-height: none">// now we want to add each number in the list
 const numbers = [1,2,3]
 
 // start off at zero
@@ -97,8 +102,10 @@ const total = 0
 
 // visit every item
 for (const i = 0 ; i < numbers.length ; i ++) {
+    // grab the i'th number
+    const number = numbers[i]
     // add the number to the running total
-    total += entry
+    total += number
 }
 
 // total == 6</code></pre></section><section>Using reduce,<pre><code class="javascript">// the numbers to sum up
@@ -107,7 +114,12 @@ const numbers = [1,2,3]
 // combine them in a single line
 const total = numbers.reduce((sum, entry) => sum + entry, 0)
 
-// total == 6</code></pre></section></section><section><section><h2>building web interfaces</h2></section><section><h2>jQuery</h2><div class="row"><div class="column"><pre><code>&lt;div&gt;
+// total == 6</code></pre></section></section><section><section><h2>building web interfaces</h2></section><section><h2>HTML</h2><pre><code>&lt;div&gt;
+    &lt;button id="button"&gt;
+        hello
+    &lt;/button&gt;
+&lt;/div&gt;
+</code></pre></section><section><h2>jQuery</h2><div class="row"><div class="column"><pre><code>&lt;div&gt;
     &lt;button id="button"&gt;
         hello
     &lt;/button&gt;
