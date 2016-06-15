@@ -21,8 +21,8 @@ section
             | [1,4,9]
     section
         | In the imperative world...
-        pre
-            code.javascript.
+        pre(style="max-height: none; font-size: 20px; margin-bottom: 10px;")
+            code(style="max-height: none").
                 // we want to square each number in this list
                 const numbers = [1,2,3]
 
@@ -31,6 +31,9 @@ section
 
                 // visit each element in the array
                 for (const i = 0 ; i < numbers.length ; i ++) {
+                    // grab the i'th entry
+                    const entry = numbers[i]
+                    // add the square to the list
                     result.append(entry * entry)
                 }
 
@@ -55,8 +58,8 @@ section
 
     section
         | Then
-        pre
-            code.javascript.
+        pre(style="max-height: none; font-size: 20px; margin-bottom: 10px;")
+            code(style="max-height: none").
                 // we want to grab every even number in this list
                 const numbers = [1,2,3,4,5,6]
                 // collect results here
@@ -64,6 +67,8 @@ section
 
                 // go over every number
                 for (const i = 0 ; i < numbers.length ; i ++) {
+                    // grab the i'th number
+                    const number = numbers[i]
                     // if the number is even
                     if (number % 2 == 0) {
                         // add it to the list
@@ -94,8 +99,8 @@ section
             | 6
     section
         | The imperative way
-        pre
-            code.javascript.
+        pre(style="max-height: none; font-size: 20px; margin-bottom: 10px;")
+            code(style="max-height: none").
                 // now we want to add each number in the list
                 const numbers = [1,2,3]
 
@@ -104,8 +109,10 @@ section
 
                 // visit every item
                 for (const i = 0 ; i < numbers.length ; i ++) {
+                    // grab the i'th number
+                    const number = numbers[i]
                     // add the number to the running total
-                    total += entry
+                    total += number
                 }
 
                 // total == 6
